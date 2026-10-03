@@ -15,15 +15,16 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   // Generate dynamic breadcrumb label
   const getBreadcrumb = () => {
-    if (pathname === '/') return 'Bảng Điều Khiển'
+    if (pathname === '/') return 'Bảng Điều Khiển Young Talents'
     if (pathname === '/roadmap') return 'Lộ Trình & Tiến Độ'
     if (pathname === '/matrix') return 'Ma Trận Quan Hệ Kiến Thức'
-    if (pathname === '/case-studies') return 'Case Studies Ngân Hàng'
+    if (pathname === '/case-studies') return 'Case Studies VPBank'
     if (pathname.includes('/case-studies/')) return 'Case Studies > Hồ Sơ Sáng Kiến'
-    if (pathname === '/quiz') return 'Thi Trắc Nghiệm Banking'
-    if (pathname === '/interview') return 'Luyện Phỏng Vấn STAR'
-    if (pathname.includes('/learn/tier-1/')) return 'Tầng 1: BABOK Foundation'
-    if (pathname.includes('/learn/tier-2/')) return 'Tầng 2: Banking Domain'
+    if (pathname === '/quiz') return 'Luyện Đề Logic & Tình Huống'
+    if (pathname === '/interview') return 'Phòng Luyện Phỏng Vấn STAR'
+    if (pathname.includes('/learn/tier-1/')) return 'Chặng 1: Kỹ Năng & Tư Duy BA'
+    if (pathname.includes('/learn/tier-2/')) return 'Chặng 2: Sản Phẩm Số & VPBank Cases'
+    if (pathname.includes('/learn/tier-3/')) return 'Chặng 3: Thi Tuyển & Case Study'
     return 'Tài Liệu'
   }
 
@@ -56,7 +57,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
             {/* Breadcrumb Path */}
             <div className="flex items-center gap-2 text-xs">
-              <span className="text-slate-400 font-medium">Banking BA Hub</span>
+              <span className="text-slate-400 font-medium">VPBank Talents Hub</span>
               <span className="text-slate-300">/</span>
               <span className="font-semibold text-slate-800">{getBreadcrumb()}</span>
             </div>
@@ -66,7 +67,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-3">
             <Link
               href="/matrix"
-              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold text-blue-700 bg-blue-50 border border-blue-200/80 hover:bg-blue-100 transition-colors"
+              className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/80 hover:bg-emerald-100 transition-colors"
             >
               <Network className="w-3.5 h-3.5" />
               <span>Đồ thị quan hệ</span>
@@ -103,10 +104,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <footer className="border-t border-slate-200/70 bg-white py-6 text-center text-xs text-slate-400">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <p className="font-semibold text-slate-600">
-              Banking IT Business Analyst Mastery Hub
+              VPBank Young Talents — Digital Business Analyst Fast-Track
             </p>
             <p className="text-[11px] text-slate-400 mt-0.5">
-              Khung năng lực BABOK v3 & Core Banking Kiến Trúc Phân Tán
+              Hệ thống huấn luyện tư duy phân tích, giải case thực chiến và chinh phục Hội đồng tuyển dụng
             </p>
           </div>
         </footer>

@@ -94,12 +94,12 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
             {!collapsed && (
               <div className="whitespace-nowrap">
                 <div className="font-bold text-slate-900 text-sm tracking-tight flex items-center gap-1.5">
-                  Banking BA Hub
-                  <span className="text-[9px] bg-blue-50 text-blue-700 font-semibold px-1.5 py-0.2 rounded border border-blue-200">
-                    Pro
+                  VPBank Talents
+                  <span className="text-[9px] bg-emerald-50 text-emerald-700 font-semibold px-1.5 py-0.2 rounded border border-emerald-200">
+                    Digital BA
                   </span>
                 </div>
-                <p className="text-[10px] text-slate-400 font-medium">BABOK v3 & Fintech</p>
+                <p className="text-[10px] text-slate-400 font-medium">Young Talents Fast-Track</p>
               </div>
             )}
           </Link>
@@ -148,7 +148,7 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
           </nav>
 
           <div className="border-t border-slate-100 pt-3 space-y-4">
-            {/* TẦNG 1: BABOK FOUNDATION WITH CONNECTED TREE LINE */}
+            {/* TẦNG 1: CHẶNG 1 */}
             <div>
               {!collapsed ? (
                 <button
@@ -157,7 +157,7 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
                 >
                   <span className="flex items-center gap-1.5 text-slate-700">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                    Tầng 1: BABOK Foundation
+                    Chặng 1: Kỹ Năng & Tư Duy BA
                   </span>
                   {tier1Open ? <ChevronDown className="w-3.5 h-3.5 text-slate-400" /> : <ChevronRight className="w-3.5 h-3.5 text-slate-400" />}
                 </button>
@@ -223,16 +223,16 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
               )}
             </div>
 
-            {/* TẦNG 2: BANKING DOMAIN WITH CONNECTED TREE LINE */}
+            {/* TẦNG 2: CHẶNG 2 */}
             <div>
               {!collapsed ? (
                 <button
                   onClick={() => setTier2Open(!tier2Open)}
-                  className="w-full flex items-center justify-between px-2 py-1 text-[11px] font-bold text-slate-800 hover:text-indigo-600 transition-colors"
+                  className="w-full flex items-center justify-between px-2 py-1 text-[11px] font-bold text-slate-800 hover:text-emerald-600 transition-colors"
                 >
                   <span className="flex items-center gap-1.5 text-slate-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>
-                    Tầng 2: Banking Domain
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                    Chặng 2: Sản Phẩm Số & VPBank Cases
                   </span>
                   {tier2Open ? <ChevronDown className="w-3.5 h-3.5 text-slate-400" /> : <ChevronRight className="w-3.5 h-3.5 text-slate-400" />}
                 </button>
@@ -296,16 +296,16 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
               )}
             </div>
 
-            {/* TẦNG 3: REAL-WORLD CASE STUDIES */}
+            {/* TẦNG 3: CASE STUDIES & CAPSTONES */}
             <div>
               {!collapsed ? (
                 <button
                   onClick={() => setCaseStudiesOpen(!caseStudiesOpen)}
-                  className="w-full flex items-center justify-between px-2 py-1 text-[11px] font-bold text-slate-800 hover:text-emerald-600 transition-colors"
+                  className="w-full flex items-center justify-between px-2 py-1 text-[11px] font-bold text-slate-800 hover:text-purple-600 transition-colors"
                 >
                   <span className="flex items-center gap-1.5 text-slate-700">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
-                    Tầng 3: Case Studies (5 Phases)
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-600"></span>
+                    Chặng 3: Thi Tuyển & Case Study
                   </span>
                   {caseStudiesOpen ? <ChevronDown className="w-3.5 h-3.5 text-slate-400" /> : <ChevronRight className="w-3.5 h-3.5 text-slate-400" />}
                 </button>

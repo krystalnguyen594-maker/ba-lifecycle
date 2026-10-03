@@ -42,29 +42,29 @@ export default function DashboardPage() {
       <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-10 shadow-2xs space-y-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold border border-blue-200/60">
-              <Building2 className="w-3.5 h-3.5" /> Banking IT Business Analyst Mastery Hub
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200/60">
+              <Building2 className="w-3.5 h-3.5" /> VPBank Young Talents — Fast-Track Digital BA
             </div>
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
-              Lộ Trình Phân Tích Nghiệp Vụ Chuẩn BABOK v3 & Banking Domain
+              Chinh Phục Kỳ Thi Tuyển VPBank Young Talents
             </h1>
             <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-              Mô hình học tập 3 tầng kết hợp Docs-as-Code trên IDE. Nắm vững từ kiến trúc Core Banking, Napas 247, Sổ cái kế toán bút toán kép, cho đến giải quyết bài toán hoàn tiền lỗi mạng và luyện thi phỏng vấn STAR.
+              Lộ trình huấn luyện thực chiến: Từ vũ khí tư duy có cấu trúc (MECE, Issue Tree), giải mã sản phẩm số VPBank NEO / Cake by VPBank, đến cẩm nang sống còn tại vòng thi nhóm Assessment Center và phỏng vấn Hội đồng Lãnh đạo.
             </p>
           </div>
 
           {/* Primary Action Card */}
           <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3 shrink-0 md:w-80 shadow-2xs">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-slate-500 font-medium">Bài học tiếp theo:</span>
-              <span className="text-blue-600 font-bold">{nextLesson.tier === 'tier-1' ? 'Tầng 1' : 'Tầng 2'}</span>
+              <span className="text-slate-500 font-medium">Nhiệm vụ tiếp theo:</span>
+              <span className="text-emerald-700 font-bold">{nextLesson.tier === 'tier-1' ? 'Chặng 1' : 'Chặng 2'}</span>
             </div>
             <h3 className="font-bold text-slate-900 text-sm line-clamp-2 leading-snug">
               {nextLesson.title}
             </h3>
             <Link
               href={`/learn/${nextLesson.tier}/${nextLesson.id}`}
-              className="w-full inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-colors shadow-2xs"
+              className="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-colors shadow-2xs"
             >
               <span>Vào học ngay</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -124,10 +124,10 @@ export default function DashboardPage() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
-            <Layers className="w-4 h-4 text-blue-600" />
-            Lộ Trình Đào Tạo 3 Tầng Thực Chiến
+            <Layers className="w-4 h-4 text-emerald-600" />
+            Lộ Trình 3 Chặng Huấn Luyện Young Talents
           </h2>
-          <Link href="/roadmap" className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
+          <Link href="/roadmap" className="text-xs font-semibold text-emerald-600 hover:text-emerald-700 flex items-center gap-1">
             Xem toàn bộ bài học <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -137,22 +137,22 @@ export default function DashboardPage() {
           <div className="bg-white rounded-2xl border border-slate-200/90 p-5 flex flex-col justify-between shadow-2xs hover:border-slate-300 transition-colors">
             <div className="space-y-2.5">
               <span className="text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
-                Tầng 1
+                Chặng 1
               </span>
               <h3 className="font-bold text-slate-900 text-sm">
-                BABOK v3 & Kỹ Năng Kỹ Thuật BA
+                Vũ Khí Tư Duy & Kỹ Năng BA Cốt Lõi
               </h3>
               <p className="text-xs text-slate-500 leading-relaxed">
-                Khơi gợi yêu cầu, vẽ luồng BPMN 2.0 / Sequence Diagram, User Story chuẩn INVEST và Data Dictionary có Idempotency.
+                Tư duy MECE bẻ nhỏ bài toán, 5 Whys tìm gốc rễ, sơ đồ luồng BPMN, User Story chuẩn INVEST và hiểu bản chất API/Data.
               </p>
             </div>
             <div className="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs">
               <span className="text-slate-400 font-medium">{tier1Pct}% xong</span>
               <Link
-                href="/learn/tier-1/01_business_analysis_overview"
+                href="/learn/tier-1/01_structured_problem_solving_mece"
                 className="font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1"
               >
-                Học Tầng 1 <ArrowRight className="w-3 h-3" />
+                Vào Chặng 1 <ArrowRight className="w-3 h-3" />
               </Link>
             </div>
           </div>
@@ -160,23 +160,23 @@ export default function DashboardPage() {
           {/* Tier 2 Card */}
           <div className="bg-white rounded-2xl border border-slate-200/90 p-5 flex flex-col justify-between shadow-2xs hover:border-slate-300 transition-colors">
             <div className="space-y-2.5">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded border border-indigo-200">
-                Tầng 2
+              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                Chặng 2
               </span>
               <h3 className="font-bold text-slate-900 text-sm">
-                Bản Đồ Nghiệp Vụ Ngân Hàng & Fintech
+                Sản Phẩm Số & VPBank Cases
               </h3>
               <p className="text-xs text-slate-500 leading-relaxed">
-                Core Banking, Sổ cái bút toán kép (COA QĐ 479), Chuyển mạch Napas 247/SWIFT, Thẻ POS, Vay số STP và eKYC QĐ 2345.
+                Case eKYC Onboarding giảm rớt phễu trên VPBank NEO, Vay online phê duyệt trong 3 phút, Cake by VPBank và tích hợp Be Group.
               </p>
             </div>
             <div className="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs">
               <span className="text-slate-400 font-medium">{tier2Pct}% xong</span>
               <Link
-                href="/learn/tier-2/01_core_banking_and_ledger"
-                className="font-bold text-indigo-600 hover:text-indigo-700 flex items-center gap-1"
+                href="/learn/tier-2/03_vpbank_digital_case_studies"
+                className="font-bold text-emerald-600 hover:text-emerald-700 flex items-center gap-1"
               >
-                Học Tầng 2 <ArrowRight className="w-3 h-3" />
+                Vào Chặng 2 <ArrowRight className="w-3 h-3" />
               </Link>
             </div>
           </div>
@@ -184,23 +184,23 @@ export default function DashboardPage() {
           {/* Tier 3 Card */}
           <div className="bg-white rounded-2xl border border-slate-200/90 p-5 flex flex-col justify-between shadow-2xs hover:border-slate-300 transition-colors">
             <div className="space-y-2.5">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                Tầng 3
+              <span className="text-[10px] font-bold uppercase tracking-wider text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">
+                Chặng 3
               </span>
               <h3 className="font-bold text-slate-900 text-sm">
-                Case Studies Thực Chiến (Docs-as-Code)
+                Chinh Phục Vòng Thi Tuyển & Case Study
               </h3>
               <p className="text-xs text-slate-500 leading-relaxed">
-                Hồ sơ bàn giao hoàn chỉnh 5 phases cho các bài toán: Hoàn tiền lỗi mạng, Chia bill VietQR nhóm, và Cashback Engine.
+                Playbook giải đề thi nhóm Assessment Center, bộ câu hỏi phỏng vấn Hội đồng Lãnh đạo chuẩn STAR và rèn phản biện đỉnh cao.
               </p>
             </div>
             <div className="pt-4 border-t border-slate-100 mt-4 flex items-center justify-between text-xs">
-              <span className="text-slate-400 font-medium">3 Sáng Kiến</span>
+              <span className="text-slate-400 font-medium">Sẵn sàng thi</span>
               <Link
-                href="/case-studies"
-                className="font-bold text-emerald-600 hover:text-emerald-700 flex items-center gap-1"
+                href="/learn/tier-3/02_assessment_center_playbook"
+                className="font-bold text-purple-600 hover:text-purple-700 flex items-center gap-1"
               >
-                Khám phá <ArrowRight className="w-3 h-3" />
+                Vào Chặng 3 <ArrowRight className="w-3 h-3" />
               </Link>
             </div>
           </div>

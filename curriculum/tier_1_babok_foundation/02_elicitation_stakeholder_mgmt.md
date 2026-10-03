@@ -31,7 +31,7 @@ mindmap
 ```
 
 ### Chi tiết ứng dụng thực tế:
-1. **Document Analysis (Bắt buộc tiên quyết):** Trước khi gặp bất kỳ stakeholder nào, BA phải đọc kỹ các thông tư liên quan của Ngân hàng Nhà nước (ví dụ: Thông tư 39 về cho vay, Thông tư 19 về dịch vụ thẻ) và tài liệu quy chế nội bộ. Nếu không đọc trước, bạn sẽ bị coi là thiếu chuyên nghiệp trong các buổi họp với phòng Pháp chế.
+1. **Document Analysis (Bắt buộc tiên quyết):** Trước khi gặp bất kỳ stakeholder nào, BA phải đọc kỹ các thông tư liên quan của Ngân hàng Nhà nước (ví dụ: **Thông tư 18/2024/TT-NHNN** về hoạt động thẻ thay thế TT 19 cũ, **Thông tư 17/2024/TT-NHNN** về mở tài khoản thanh toán bằng eKYC bắt buộc đối chiếu CCCD gắn chip, **Quyết định 2345/QĐ-NHNN** về sinh trắc học) và tài liệu quy chế nội bộ. Nếu không đọc trước, bạn sẽ bị coi là thiếu chuyên nghiệp trong các buổi họp với phòng Pháp chế.
 2. **Job Shadowing (Quan sát tại quầy):** Đi xuống chi nhánh hoặc phòng giao dịch, ngồi trực tiếp cạnh Giao dịch viên (Teller) để xem họ bấm phần mềm Core Banking xử lý một giao dịch nộp tiền/rút tiền mất bao nhiêu thao tác và gặp lỗi gì.
 3. **Joint Application Design (JAD Workshop):** Đưa tất cả các bên liên quan (Product, IT, Risk, Ops, Legal) vào một phòng họp để chốt các điểm rẽ nhánh quan trọng.
 
@@ -44,7 +44,7 @@ mindmap
 | Tiêu Chí | Góc Nhìn Khối Kinh Doanh (Business / Growth) | Góc Nhìn Khối Rủi Ro & Tuân Thủ (Risk & Legal) | Vai Trò Dung Hoà Của Banking BA |
 | :--- | :--- | :--- | :--- |
 | **Mục tiêu chính** | Tăng trưởng người dùng mới, tăng doanh số giao dịch, trải nghiệm mượt mà không ma sát (Frictionless UX). | Chống gian lận (Anti-fraud), ngăn ngừa nợ xấu, tuân thủ 100% quy định pháp luật của NHNN. | Thiết kế **Hệ thống phân tầng rủi ro (Risk-Based Tiering)** và tự động hoá kiểm tra nền. |
-| **Ví dụ: Luồng mở tài khoản eKYC** | *"Chỉ cần chụp mặt và nhập số điện thoại là mở được tài khoản ngay trong 30 giây!"* | *"Phải bắt khách hàng quay mặt 4 hướng, quét NFC CCCD gắn chip, kiểm tra CIC và chờ phê duyệt thủ công 24 giờ!"* | **Giải pháp BA:** Cho phép mở tài khoản hạn mức thấp (Tier 1: < 20 triệu/tháng) bằng eKYC tự động; khi muốn nâng hạn mức cao (Tier 2) mới kích hoạt quét NFC và xác thực sinh trắc học. |
+| **Ví dụ: Luồng mở tài khoản eKYC** | *"Chỉ cần chụp mặt và nhập số điện thoại là mở được tài khoản ngay trong 30 giây!"* | *"Theo Thông tư 17/2024, bắt buộc 100% tài khoản eKYC phải quét NFC CCCD gắn chip và khớp sinh trắc học với C06 Bộ Công An mới được kích hoạt giao dịch!"* | **Giải pháp BA:** Tuân thủ pháp lý nhưng tối ưu UX: Thiết kế animation hướng dẫn vị trí chạm chip NFC theo từng dòng máy (iPhone đặt ở đỉnh camera, Samsung ở giữa lưng), có cơ chế tự động thử lại 3 lần, fallback chuyển sang Video Call với điện thoại không có NFC hoặc đặt lịch hỗ trợ tại quầy. |
 | **Ví dụ: Hạn mức chuyển tiền không OTP** | *"Cho phép chuyển dưới 5 triệu đồng không cần nhập mã PIN/OTP để nhanh chóng."* | *"Mọi giao dịch trên 100,000 VND đều phải bắt nhập OTP và nhận diện khuôn mặt."* | **Giải pháp BA:** Tuân thủ chuẩn Quyết định 2345/QĐ-NHNN: Giao dịch dưới 10 triệu/lần và tổng dưới 20 triệu/ngày chỉ cần Soft OTP; giao dịch trên 10 triệu bắt buộc Face Matching sinh trắc học. |
 
 ---

@@ -52,22 +52,22 @@ export interface InterviewQuestion {
 
 export const TIER_INFO = {
   'tier-1': {
-    title: 'Tầng 1: Nền Tảng BABOK v3 & Kỹ Năng Kỹ Thuật BA',
-    description: 'Làm chủ 6 vùng tri thức BABOK v3, kỹ thuật khơi gợi yêu cầu, vẽ luồng BPMN 2.0, viết User Story INVEST và đặc tả API/Data Dictionary chuẩn tài chính.',
-    badge: 'BABOK Foundation',
+    title: 'Chặng 1: Vũ Khí Tư Duy & Kỹ Năng BA Cốt Lõi (Core Toolset)',
+    description: 'Làm chủ tư duy MECE, 5 Whys, vẽ sơ đồ quy trình BPMN 2.0, viết User Story INVEST/Gherkin và hiểu logic API/Data Modeling mà không cần biết code.',
+    badge: 'Core Toolset',
     color: 'from-blue-600 to-cyan-500'
   },
   'tier-2': {
-    title: 'Tầng 2: Bản Đồ Nghiệp Vụ Ngân Hàng & Fintech Chuyên Sâu',
-    description: 'Thấu hiểu tường tận Core Banking, Sổ cái kế toán bút toán kép, Mạng chuyển mạch Napas 247/SWIFT, Hệ thống thẻ Visa/Mastercard, Cho vay trực tuyến STP và eKYC/AML.',
-    badge: 'Banking Mastery',
-    color: 'from-indigo-600 to-purple-600'
+    title: 'Chặng 2: Sản Phẩm Số & Hệ Sinh Thái VPBank (Digital Cases)',
+    description: 'Giải mã kiến trúc và nghiệp vụ các sản phẩm thực chiến: VPBank NEO eKYC Onboarding, Vay online phê duyệt trong 3 phút, Cake by VPBank và tích hợp Be Group.',
+    badge: 'VPBank Digital Cases',
+    color: 'from-emerald-600 to-teal-500'
   },
   'tier-3': {
-    title: 'Tầng 3: Thực Chiến 5 Phases Với Bài Toán Ngân Hàng Thật',
-    description: 'Trực tiếp phân tích và thiết kế giải pháp cho các bài toán kinh điển: Hoàn tiền lỗi mạng, Chia bill QR, và Công cụ Loyalty Cashback theo mô hình Docs-as-Code.',
-    badge: 'Real-world Capstone',
-    color: 'from-emerald-600 to-teal-500'
+    title: 'Chặng 3: Chinh Phục Vòng Thi Tuyển (Assessment & Interview)',
+    description: 'Playbook giải đề thi nhóm Assessment Center, bộ câu hỏi phỏng vấn Hội đồng Lãnh đạo chuẩn STAR và rèn luyện tư duy phản biện đỉnh cao.',
+    badge: 'Talents Mastery',
+    color: 'from-purple-600 to-indigo-600'
   }
 }
 
@@ -421,6 +421,104 @@ export const LESSONS: Lesson[] = [
       ],
       correctIndex: 1,
       explanation: 'Quyết định 2345 bắt buộc phải Face Matching khi kích hoạt tài khoản trên thiết bị mới để ngăn chặn triệt để kẻ gian hack mật khẩu hoặc cướp SIM để chiếm đoạt tài sản từ xa.'
+    }
+  },
+  // VPBANK YOUNG TALENTS SPECIALIZED LESSONS
+  {
+    id: '01_structured_problem_solving_mece',
+    title: 'Tư Duy Có Cấu Trúc (Structured Problem Solving) Cho Digital BA',
+    subtitle: 'Nắm vững MECE Framework, Issue Tree và 5 Whys để tự tin bẻ nhỏ mọi bài toán kinh doanh số hóc búa',
+    tier: 'tier-1',
+    category: 'Young Talents Problem Solving',
+    estimatedMinutes: 20,
+    filePath: 'curriculum/young_talents/01_structured_problem_solving_mece.md',
+    skillsCovered: ['MECE Framework', 'Issue Tree', '5 Whys Root Cause', 'Digital Product Breakdown'],
+    keyTakeaways: [
+      'Áp dụng MECE: Không trùng lặp (Mutually Exclusive), Không bỏ sót (Collectively Exhaustive).',
+      'Cách bẻ nhỏ bài toán doanh số cho vay thành công thức 4 biến số để tìm điểm nghẽn.',
+      'Sử dụng 5 Whys để tìm nguyên nhân gốc rễ thay vì chữa cháy bề nổi.'
+    ],
+    prerequisites: [],
+    unlocks: ['01_business_analysis_overview'],
+    relatedCaseStudies: [],
+    relatedInterviewIds: ['int-4'],
+    quickCheck: {
+      question: 'Khi giám khảo VPBank yêu cầu bạn phân tích nguyên nhân tại sao tỷ lệ người dùng rời bỏ ứng dụng tăng cao, cách mở đầu nào sau đây thể hiện tư duy có cấu trúc (Structured Thinking) tốt nhất?',
+      options: [
+        'Em nghĩ nguyên nhân là do giao diện khó dùng và đối thủ đang khuyến mãi nhiều tiền hơn.',
+        'Dạ thưa anh/chị, để tiếp cận bài toán một cách toàn diện theo nguyên tắc MECE, em xin phép chia hành trình người dùng thành 3 giai đoạn: Trước giao dịch (Onboarding/Login), Trong giao dịch (Core Features/Latency) và Sau giao dịch (CSKH/Thông báo số dư).',
+        'Em sẽ tiến hành phỏng vấn 100 khách hàng ngay lập tức để hỏi lý do.',
+        'Em đề xuất giảm phí giao dịch về 0 đồng để kéo khách hàng quay lại.'
+      ],
+      correctIndex: 1,
+      explanation: 'Tiếp cận có cấu trúc theo nguyên tắc MECE và Hành trình khách hàng (Customer Journey) chứng minh bạn là một ứng viên có tư duy phân tích hệ thống sắc bén, đây là tiêu chí quan trọng nhất tại các kỳ thi Talent.'
+    }
+  },
+  {
+    id: '03_vpbank_digital_case_studies',
+    title: 'Bộ 3 Case Study Sản Phẩm Số Thực Chiến Tại VPBank',
+    subtitle: 'Giải mã thực chiến: eKYC Onboarding VPBank NEO, Vay online 3 phút và Tích hợp hệ sinh thái Be/Cake',
+    tier: 'tier-2',
+    category: 'VPBank Digital Cases',
+    estimatedMinutes: 25,
+    filePath: 'curriculum/young_talents/03_vpbank_digital_case_studies.md',
+    skillsCovered: ['eKYC Drop-off Reduction', 'Instant Loan Approval STP', 'Open API Ecosystem', 'Haptic & UX Feedback'],
+    keyTakeaways: [
+      'Giải bài toán giảm tỷ lệ rớt phễu eKYC quét NFC bằng nhận diện thiết bị và hướng dẫn trực quan.',
+      'Kiến trúc phê duyệt vay 100% tự động STP trong 3 phút kết hợp Rule Engine và ML Scoring.',
+      'Cách thiết kế Open API tích hợp giữa Ngân hàng và đối tác gọi xe Be Group.'
+    ],
+    prerequisites: ['01_core_banking_and_ledger'],
+    unlocks: ['02_assessment_center_playbook'],
+    relatedCaseStudies: [
+      {
+        slug: 'payment_network_error_refund',
+        title: 'Hoàn Tiền Lỗi Mạng',
+        phase: 'Phase 3: Analysis Modeling',
+        reason: 'Áp dụng xử lý lỗi phân tán trong các giao dịch hệ sinh thái số.'
+      }
+    ],
+    relatedInterviewIds: ['int-1', 'int-3'],
+    quickCheck: {
+      question: 'Trong luồng mở tài khoản eKYC trên VPBank NEO, giải pháp nào sau đây giúp giảm tỷ lệ khách hàng bỏ dở (drop-off) tại bước quét NFC CCCD gắn chip?',
+      options: [
+        'Bỏ qua luôn bước quét NFC để cho khách hàng vào app cho nhanh',
+        'Tự động nhận diện model điện thoại để hiển thị Animation vị trí đặt thẻ chính xác, kết hợp rung nhẹ máy (Haptic Feedback) khi đọc chip thành công',
+        'Bắt khách hàng phải nhập tay toàn bộ số thẻ và ngày cấp',
+        'Gửi tin nhắn SMS bắt khách hàng tự gọi lên tổng đài hỏi'
+      ],
+      correctIndex: 1,
+      explanation: 'Thông tư 17/2024 không cho phép bỏ qua NFC. Giải pháp tối ưu nhất là dùng UX thông minh (Device Detection, Animation vị trí chip và phản hồi xúc giác) để dẫn dắt khách hàng hoàn tất thao tác dễ dàng nhất.'
+    }
+  },
+  {
+    id: '02_assessment_center_playbook',
+    title: 'Bí Kíp Vượt Ải Vòng Thi Nhóm (Assessment Center Playbook)',
+    subtitle: 'Chiến thuật sống còn trong vòng giải Business Case nhóm: 4 vai trò cốt lõi, ma trận 45 phút và thuyết trình Minto',
+    tier: 'tier-3',
+    category: 'Assessment Center Mastery',
+    estimatedMinutes: 25,
+    filePath: 'curriculum/young_talents/02_assessment_center_playbook.md',
+    skillsCovered: ['Group Case Solving', 'Role Strategy (Leader/Structurer)', 'Minto Pyramid Presentation', 'Conflict Resolution'],
+    keyTakeaways: [
+      'Không cần phải làm Leader mới đỗ: Vai trò The Structurer (dựng khung giải pháp) cực kỳ tỏa sáng đối với BA.',
+      'Quy tắc 4 bước quản trị 45 phút: Xác định mục tiêu -> Dựng khung MECE -> Lượng hóa số liệu -> Thuyết trình Top-down.',
+      'Cách xử lý văn minh khi có thành viên cướp lời hoặc nhóm sa đà vào tranh cãi tiểu tiết.'
+    ],
+    prerequisites: ['03_vpbank_digital_case_studies'],
+    unlocks: [],
+    relatedCaseStudies: [],
+    relatedInterviewIds: ['int-4'],
+    quickCheck: {
+      question: 'Trong vòng thi nhóm Assessment Center, khi thấy hai thành viên đang tranh cãi gay gắt về một chi tiết nhỏ khiến nhóm sắp hết thời gian, hành động nào sau đây là chuyên nghiệp nhất?',
+      options: [
+        'Im lặng để mặc hai bạn cãi nhau vì giám khảo sẽ trừ điểm hai bạn đó',
+        'Lên tiếng ngắt lời gay gắt và ép cả nhóm phải theo ý của mình',
+        'Chủ động can thiệp bằng cách nhắc lại mục tiêu chính của đề bài, chỉ ra quỹ thời gian còn lại và đề xuất biểu quyết nhanh hoặc đưa phương án kia vào pha sau',
+        'Bỏ ra ngoài phòng thi'
+      ],
+      correctIndex: 2,
+      explanation: 'Đây là biểu hiện xuất sắc của kỹ năng điều phối (Facilitation) và tư duy hướng tới mục tiêu (Result-Oriented), điều mà các giám khảo Young Talents luôn tìm kiếm ở một nhân sự tiềm năng.'
     }
   }
 ]
