@@ -82,7 +82,7 @@ export default function Sidebar({ collapsed, setCollapsed, mobileOpen, setMobile
       {/* Sidebar Container */}
       <aside
         className={`fixed top-0 bottom-0 left-0 z-50 bg-slate-900 text-slate-300 flex flex-col border-r border-slate-800 transition-all duration-300 ease-in-out ${
-          collapsed ? 'w-18' : 'w-72'
+          collapsed ? 'w-20' : 'w-72'
         } ${
           mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
