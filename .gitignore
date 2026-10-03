@@ -11,3 +11,11 @@ Thumbs.db
 scratch/
 *.tmp
 *.log
+
+# Node & Next.js
+web/node_modules/
+web/.next/
+web/out/
+.next/
+node_modules/
+
