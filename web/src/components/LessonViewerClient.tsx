@@ -23,7 +23,7 @@ import {
 } from 'lucide-react'
 import { Lesson, LESSONS } from '@/data/curriculumData'
 import { useProgress } from '@/context/ProgressContext'
-import MermaidViewer from '@/components/MermaidViewer'
+import MarkdownRenderer from '@/components/MarkdownRenderer'
 
 interface LessonViewerClientProps {
   lesson: Lesson
@@ -77,44 +77,9 @@ export default function LessonViewerClient({ lesson, markdownContent }: LessonVi
     }
   }
 
-  // Parse markdown content to separate Mermaid blocks from text blocks
-  const renderContentWithMermaid = (content: string) => {
-    const parts = content.split(/(```mermaid[\s\S]*?```)/g)
-
-    return parts.map((part, index) => {
-      if (part.startsWith('```mermaid')) {
-        const chartCode = part.replace(/^```mermaid\n/, '').replace(/\n```$/, '')
-        return <MermaidViewer key={index} chart={chartCode} />
-      }
-
-      return (
-        <div 
-          key={index}
-          className="markdown-body space-y-4 text-slate-800"
-          dangerouslySetInnerHTML={{ __html: formatSimpleMarkdown(part) }}
-        />
-      )
-    })
-  }
-
-  function formatSimpleMarkdown(md: string): string {
-    let html = md
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-
-    html = html.replace(/^### (.*$)/gim, '<h3 class="text-base font-bold text-slate-900 mt-6 mb-2">$1</h3>')
-    html = html.replace(/^## (.*$)/gim, '<h2 class="text-lg font-bold text-slate-900 mt-8 mb-3 pb-1 border-b border-slate-100">$1</h2>')
-    html = html.replace(/^# (.*$)/gim, '<h1 class="text-2xl font-extrabold text-slate-900 mt-4 mb-4 pb-2 border-b border-slate-200">$1</h1>')
-
-    html = html.replace(/\*\*(.*?)\*\*/gim, '<strong class="font-bold text-slate-900">$1</strong>')
-    html = html.replace(/\*(.*?)\*/gim, '<em class="italic text-slate-800">$1</em>')
-    html = html.replace(/`([^`]+)`/gim, '<code class="bg-slate-100 text-blue-700 px-1.5 py-0.5 rounded text-xs font-mono border border-slate-200">$1</code>')
-    html = html.replace(/^\&gt; (.*$)/gim, '<blockquote class="border-l-3 border-blue-600 bg-slate-50/80 p-3.5 rounded-r-lg my-3 text-slate-700 text-sm">$1</blockquote>')
-    html = html.replace(/^---$/gim, '<hr class="my-6 border-slate-100" />')
-    html = html.replace(/\n\n/g, '</p><p class="mb-4 leading-relaxed text-[15px] text-slate-700">')
-
-    return `<p class="mb-4 leading-relaxed text-[15px] text-slate-700">${html}</p>`
+  // Render markdown content using proper MarkdownRenderer
+  const renderContent = (content: string) => {
+    return <MarkdownRenderer content={content} />
   }
 
   // Locked Gatekeeper Screen
@@ -302,7 +267,7 @@ export default function LessonViewerClient({ lesson, markdownContent }: LessonVi
       {/* Tab 1: Editorial Content */}
       {activeTab === 'content' && (
         <div className="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-10 shadow-2xs space-y-6">
-          {renderContentWithMermaid(markdownContent)}
+          {renderContent(markdownContent)}
 
           {/* Quick Check Challenge at bottom */}
           {lesson.quickCheck && (

@@ -8,6 +8,18 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      spacing: {
+        '4.5': '1.125rem',   // h-4.5, w-4.5
+        '15': '3.75rem',     // h-15
+        '76': '19rem',       // w-76, pl-76
+      },
+      boxShadow: {
+        'xs': '0 1px 2px 0 rgb(0 0 0 / 0.03)',
+        '2xs': '0 0.5px 1px 0 rgb(0 0 0 / 0.02)',
+      },
+      backdropBlur: {
+        'xs': '2px',
+      },
       colors: {
         bank: {
           50: '#f0f7ff',
