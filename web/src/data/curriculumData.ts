@@ -1,3 +1,17 @@
+export interface RelatedCaseStudy {
+  slug: string
+  title: string
+  phase: string
+  reason: string
+}
+
+export interface QuickCheck {
+  question: string
+  options: string[]
+  correctIndex: number
+  explanation: string
+}
+
 export interface Lesson {
   id: string
   title: string
@@ -8,6 +22,11 @@ export interface Lesson {
   filePath: string
   skillsCovered: string[]
   keyTakeaways: string[]
+  prerequisites?: string[]
+  unlocks?: string[]
+  relatedCaseStudies?: RelatedCaseStudy[]
+  relatedInterviewIds?: string[]
+  quickCheck?: QuickCheck
 }
 
 export interface QuizQuestion {
@@ -67,7 +86,22 @@ export const LESSONS: Lesson[] = [
       'Nắm vững 3 khối mà Banking BA kết nối: Business, IT Core/Microservices và Đối tác Napas/CIC/SBV.',
       'Hiểu rõ 6 Knowledge Areas của BABOK v3 trong thực tế ngân hàng.',
       'Phân biệt mô hình Water-Scrum-Fall thực tế tại các Ngân hàng Việt Nam.'
-    ]
+    ],
+    prerequisites: [],
+    unlocks: ['02_elicitation_stakeholder_mgmt'],
+    relatedCaseStudies: [],
+    relatedInterviewIds: ['int-1'],
+    quickCheck: {
+      question: 'Trong các ngân hàng Việt Nam hiện nay, mô hình phối hợp nào giữa Business và IT là phổ biến nhất trong các dự án Ngân hàng số?',
+      options: [
+        'Mô hình Waterfall cứng nhắc 100% không cho thay đổi yêu cầu',
+        'Mô hình Agile Squad đa chức năng (Scrum) kết hợp quản trị tuân thủ (Water-Scrum-Fall)',
+        'Mô hình Kanban không cần viết tài liệu phân tích nghiệp vụ',
+        'Mô hình để Developer tự nói chuyện trực tiếp với Khách hàng không qua BA'
+      ],
+      correctIndex: 1,
+      explanation: 'Hầu hết các Ngân hàng số áp dụng mô hình Digital Squad (Scrum) linh hoạt cho tầng Kênh (Mobile/Web), nhưng vẫn kết hợp Waterfall có cổng kiểm soát chặt chẽ ở tầng Core Banking và Pháp chế/Tuân thủ (Mô hình Water-Scrum-Fall).'
+    }
   },
   {
     id: '02_elicitation_stakeholder_mgmt',
@@ -82,7 +116,29 @@ export const LESSONS: Lesson[] = [
       'Áp dụng Document Analysis đọc Thông tư NHNN trước khi họp với Stakeholder.',
       'Sử dụng Risk-Based Tiering để cân bằng giữa trải nghiệm khách hàng và an toàn bảo mật.',
       'Nguyên tắc vàng: Thuyết phục Khối Rủi ro bằng dữ liệu định lượng, không tranh cãi cảm tính.'
-    ]
+    ],
+    prerequisites: ['01_business_analysis_overview'],
+    unlocks: ['03_business_process_bpmn_modeling'],
+    relatedCaseStudies: [
+      {
+        slug: 'payment_network_error_refund',
+        title: 'Hoàn Tiền Khi Lỗi Mạng',
+        phase: 'Phase 2: Elicitation Grill',
+        reason: 'Áp dụng Grill Decision Log để giải quyết mâu thuẫn giữa Trải nghiệm hoàn tiền tức thì vs Rủi ro mất vốn đối soát với Ngân hàng.'
+      }
+    ],
+    relatedInterviewIds: ['int-1'],
+    quickCheck: {
+      question: 'Khi Khối Kinh Doanh muốn bỏ bớt bước xác thực để tăng chuyển đổi, còn Khối Rủi Ro muốn giữ bảo mật nghiêm ngặt, giải pháp kỹ thuật tối ưu của BA là gì?',
+      options: [
+        'Nghe theo bên nào có chức vụ cao hơn trong cuộc họp',
+        'Áp dụng mô hình Phân Tầng Theo Mức Độ Rủi Ro (Risk-Based Tiering): Giao dịch nhỏ xác thực nhanh, giao dịch lớn hoặc bất thường mới kích hoạt đa tầng bảo mật',
+        'Bỏ qua cả 2 bên và tự quyết định theo ý mình',
+        'Tạo ra 2 ứng dụng riêng biệt'
+      ],
+      correctIndex: 1,
+      explanation: 'Risk-Based Tiering là tiêu chuẩn vàng của ngành Fintech & Banking: Tối ưu trải nghiệm cho 90% giao dịch thông thường, và tập trung lớp phòng thủ cho 10% giao dịch có rủi ro cao.'
+    }
   },
   {
     id: '03_business_process_bpmn_modeling',
@@ -97,7 +153,29 @@ export const LESSONS: Lesson[] = [
       'Phân biệt Exclusive XOR, Parallel AND và Event-based Gateway trong ngân hàng.',
       'Nguyên tắc: Khoá số dư (Hold) trước khi gọi API đối tác, không trừ tiền thật trước.',
       'Tránh 3 lỗi sai chí mạng: Happy Path Only, nhầm lẫn Hold với Debit, và thiếu luồng Reversal.'
-    ]
+    ],
+    prerequisites: ['02_elicitation_stakeholder_mgmt'],
+    unlocks: ['04_user_stories_gherkin_invest', '02_payment_switching_napas_swift'],
+    relatedCaseStudies: [
+      {
+        slug: 'bill_splitting',
+        title: 'Chia Hoá Đơn Nhóm Qua QR',
+        phase: 'Phase 3: Analysis & Modeling',
+        reason: 'Sơ đồ luồng BPMN kết hợp trạng thái phòng chia tiền và gọi thanh toán P2P.'
+      }
+    ],
+    relatedInterviewIds: ['int-2', 'int-3'],
+    quickCheck: {
+      question: 'Khi thiết kế quy trình chuyển tiền liên ngân hàng gọi sang bên thứ 3 (Napas/Visa), bước nào sau đây PHẢI thực hiện trước khi gửi request ra ngoài?',
+      options: [
+        'Hạch toán trừ tiền thật và ghi Có cho người nhận ngay lập tức',
+        'Tạm khoá số dư khả dụng (Hold / Reserve Funds) trên tài khoản người gửi',
+        'Gửi email thông báo cho người nhận',
+        'Đợi đối tác gửi kết quả rồi mới kiểm tra số dư'
+      ],
+      correctIndex: 1,
+      explanation: 'Bắt buộc phải Hold Funds để đảm bảo người gửi không tẩu tán số dư ở kênh khác trong lúc giao dịch đang bay, đồng thời chưa trừ tiền thật để tránh lệch sổ cái nếu đối tác bị timeout.'
+    }
   },
   {
     id: '04_user_stories_gherkin_invest',
@@ -112,7 +190,29 @@ export const LESSONS: Lesson[] = [
       'Áp dụng bộ tiêu chuẩn INVEST để cắt nhỏ User Story vừa vặn Sprint 2-5 Story Points.',
       'Viết Acceptance Criteria đủ 3 tầng: Happy Path, Negative Validation, và Edge Case/Timeout.',
       'Kịch bản mẫu chuyển tiền VietQR xác thực sinh trắc học theo QĐ 2345/QĐ-NHNN.'
-    ]
+    ],
+    prerequisites: ['03_business_process_bpmn_modeling'],
+    unlocks: ['05_api_data_dictionary_spec', '05_ekyc_biometrics_aml_compliance'],
+    relatedCaseStudies: [
+      {
+        slug: 'payment_network_error_refund',
+        title: 'Hoàn Tiền Khi Lỗi Mạng',
+        phase: 'Phase 3: Analysis & Modeling',
+        reason: 'Bộ kịch bản Acceptance Criteria chuẩn Gherkin xử lý timeout và bồi hoàn voucher.'
+      }
+    ],
+    relatedInterviewIds: ['int-2'],
+    quickCheck: {
+      question: 'Một bộ Acceptance Criteria (AC) chuẩn chỉnh trong ngân hàng bắt buộc phải bao quát đủ 3 tầng kịch bản nào?',
+      options: [
+        'Chỉ cần kịch bản Thành công (Happy Path) là đủ cho Dev làm',
+        'Happy Path, Negative Path (Lỗi nhập liệu/Không đủ điều kiện), và Edge Case / System Failure (Timeout/Rớt mạng/Spam)',
+        'Kịch bản giao diện đẹp, kịch bản tải nhanh, kịch bản màu sắc',
+        'Kịch bản tiếng Việt và kịch bản tiếng Anh'
+      ],
+      correctIndex: 1,
+      explanation: 'Trong ngân hàng, các kịch bản ngoại lệ và lỗi mạng chiếm tới 80% rủi ro tài chính, do đó AC bắt buộc phải bao quát cả 3 tầng: Happy Path, Negative Validation và Edge Cases.'
+    }
   },
   {
     id: '05_api_data_dictionary_spec',
@@ -127,7 +227,29 @@ export const LESSONS: Lesson[] = [
       'Tuyệt đối không dùng Float/Double cho tiền tệ, bắt buộc dùng DECIMAL(18,2) hoặc BIGINT.',
       'Thiết kế X-Idempotency-Key và Redis Lock để chống trừ tiền đúp khi mạng lag.',
       'X-Correlation-ID xuyên suốt các microservices phục vụ truy vết sự cố.'
-    ]
+    ],
+    prerequisites: ['04_user_stories_gherkin_invest'],
+    unlocks: ['01_core_banking_and_ledger'],
+    relatedCaseStudies: [
+      {
+        slug: 'payment_network_error_refund',
+        title: 'Hoàn Tiền Khi Lỗi Mạng',
+        phase: 'Phase 3: Data & API Spec',
+        reason: 'Đặc tả bảng payment_transactions, refund_audit_logs và API timeout-resolver có Idempotency.'
+      }
+    ],
+    relatedInterviewIds: ['int-5'],
+    quickCheck: {
+      question: 'Tại sao trong các hệ thống Core Banking và Cổng thanh toán, tuyệt đối KHÔNG ĐƯỢC dùng kiểu dữ liệu FLOAT hoặc DOUBLE để lưu trữ số tiền?',
+      options: [
+        'Vì kiểu FLOAT không hỗ trợ số âm',
+        'Vì chuẩn dấu phẩy động IEEE 754 gây sai số làm tròn (Rounding Error), tích lũy qua nhiều giao dịch sẽ làm lệch sổ cái kế toán',
+        'Vì kiểu FLOAT chiếm quá nhiều dung lượng bộ nhớ',
+        'Vì cơ sở dữ liệu SQL không hỗ trợ kiểu FLOAT'
+      ],
+      correctIndex: 1,
+      explanation: 'Số thực dấu phẩy động biểu diễn nhị phân không chính xác (vd: 0.1 + 0.2 = 0.30000000000000004), gây sai lệch tiền lẻ hàng tỷ đồng khi đối soát. Bắt buộc dùng DECIMAL hoặc BIGINT.'
+    }
   },
 
   // TIER 2
@@ -144,7 +266,29 @@ export const LESSONS: Lesson[] = [
       'Hiểu rõ 9 loại tài khoản theo QĐ 479/2004/QĐ-NHNN (Tài khoản loại 4 là Nợ Phải Trả).',
       'Nguyên lý bất biến: Tổng Nợ (Debit) luôn bằng Tổng Có (Credit).',
       'Chu kỳ chạy EOD ban đêm và giải pháp Stand-In Processing (STIP) cho các kênh 24/7.'
-    ]
+    ],
+    prerequisites: ['05_api_data_dictionary_spec'],
+    unlocks: ['03_cards_pos_merchant_clearing'],
+    relatedCaseStudies: [
+      {
+        slug: 'sample_e_wallet_cashback',
+        title: 'Hệ Thống Cashback Loyalty',
+        phase: 'Phase 3: Ledger Accounting',
+        reason: 'Hạch toán bút toán kép chi phí khuyến mại vào tài khoản General Ledger.'
+      }
+    ],
+    relatedInterviewIds: ['int-3'],
+    quickCheck: {
+      question: 'Khi khách hàng nộp 10,000,000 VND tiền mặt vào tài khoản thanh toán của mình tại ngân hàng, bút toán kế toán kép trong Core Banking được ghi nhận như thế nào?',
+      options: [
+        'Nợ (Debit) TK 4211 (Khách hàng) / Có (Credit) TK 1011 (Tiền mặt)',
+        'Nợ (Debit) TK 1011 (Tiền mặt tại quỹ) / Có (Credit) TK 4211 (Tiền gửi của khách hàng)',
+        'Chỉ cần ghi Có TK 4211 là xong không cần ghi Nợ',
+        'Ghi Nợ tài khoản doanh thu của ngân hàng'
+      ],
+      correctIndex: 1,
+      explanation: 'Tiền mặt của ngân hàng tăng lên (Tài sản tăng ➔ Ghi NỢ TK 1011); nghĩa vụ nợ của ngân hàng với khách hàng tăng lên (Nợ phải trả tăng ➔ Ghi CÓ TK 4211).'
+    }
   },
   {
     id: '02_payment_switching_napas_swift',
@@ -159,7 +303,35 @@ export const LESSONS: Lesson[] = [
       'Khách nhận tiền sau 2s nhưng quyết toán bù trừ ròng giữa các Bank chỉ diễn ra 3 phiên/ngày tại NHNN.',
       'So sánh ISO 8583 (Legacy Bitmap) với ISO 20022 (Rich XML/JSON hiện đại).',
       'Cặp tài khoản thanh toán quốc tế: Nostro (Của ta tại bạn) và Vostro (Của bạn tại ta).'
-    ]
+    ],
+    prerequisites: ['03_business_process_bpmn_modeling'],
+    unlocks: ['payment_network_error_refund'],
+    relatedCaseStudies: [
+      {
+        slug: 'payment_network_error_refund',
+        title: 'Hoàn Tiền Khi Lỗi Mạng',
+        phase: 'Phase 1 & 2',
+        reason: 'Sự cố rớt mạng giữa cổng chuyển mạch Napas và hệ thống nội bộ.'
+      },
+      {
+        slug: 'bill_splitting',
+        title: 'Chia Hoá Đơn Nhóm Qua QR',
+        phase: 'Phase 2: VietQR Bridge',
+        reason: 'Tích hợp chuẩn mã VietQR chuyển tiền liên ngân hàng 24/7.'
+      }
+    ],
+    relatedInterviewIds: ['int-2', 'int-3'],
+    quickCheck: {
+      question: 'Khi chuyển tiền Napas 247, tại sao người nhận thấy tiền nổi ngay sau 2 giây nhưng thực tế tiền thật giữa 2 ngân hàng chưa chuyển cho nhau ngay lúc đó?',
+      options: [
+        'Vì Napas ứng tiền túi ra trả thay cho các ngân hàng',
+        'Vì hệ thống áp dụng cơ chế Chuyển mạch thời gian thực (Real-time Switching) cho khách hàng, còn tiền thật giữa các ngân hàng được Bù trừ ròng (Net Clearing) theo các phiên định kỳ tại NHNN',
+        'Vì ngân hàng người nhận tự in tiền ảo vào tài khoản',
+        'Vì đây là giao dịch không cần đối soát'
+      ],
+      correctIndex: 1,
+      explanation: 'Napas cam kết xử lý thông điệp real-time cho khách hàng, còn nghĩa vụ thanh toán giữa các tổ chức tín dụng được bù trừ đa phương và quyết toán ròng 3 phiên mỗi ngày tại hệ thống CITAD của Ngân hàng Nhà nước.'
+    }
   },
   {
     id: '03_cards_pos_merchant_clearing',
@@ -174,7 +346,22 @@ export const LESSONS: Lesson[] = [
       'Phân biệt 3 giai đoạn của giao dịch thẻ: Authorization (2s) ➔ Clearing (EOD) ➔ Settlement (T+1/T+2).',
       'Bóc tách cấu trúc phí MDR 2%: Interchange Fee (Issuer nhận), Scheme Fee, và Acquirer Markup.',
       'Quy trình tra soát đòi bồi hoàn (First Chargeback -> Representment -> Arbitration).'
-    ]
+    ],
+    prerequisites: ['01_core_banking_and_ledger'],
+    unlocks: ['04_digital_lending_credit_scoring'],
+    relatedCaseStudies: [],
+    relatedInterviewIds: [],
+    quickCheck: {
+      question: 'Trong giao dịch quẹt thẻ tín dụng tại máy POS, giai đoạn nào số tiền chỉ bị tạm khoá (Hold) ở tài khoản thẻ của khách hàng mà chưa được chuyển sang người bán?',
+      options: [
+        'Giai đoạn Settlement (Quyết toán tiền thật)',
+        'Giai đoạn Authorization (Uỷ quyền hạn mức)',
+        'Giai đoạn Clearing (Đối chiếu tệp bù trừ)',
+        'Giai đoạn Chargeback (Đòi bồi hoàn)'
+      ],
+      correctIndex: 1,
+      explanation: 'Authorization diễn ra trong 2 giây đầu tiên để xác minh thẻ và khoá số dư. Tiền chỉ thực sự chuyển giao sau khi POS đóng ca (Clearing) và quyết toán bù trừ liên ngân hàng (Settlement T+1 hoặc T+2).'
+    }
   },
   {
     id: '04_digital_lending_credit_scoring',
@@ -189,7 +376,22 @@ export const LESSONS: Lesson[] = [
       'Quy trình phê duyệt tự động Straight-Through Processing (STP) không người duyệt.',
       'Ý nghĩa 5 nhóm nợ tại CIC (Nhóm 1 nợ chuẩn đến Nhóm 5 có khả năng mất vốn).',
       'Bộ lọc Pre-screening nội bộ để tiết kiệm chi phí tra cứu API cổng CIC quốc gia.'
-    ]
+    ],
+    prerequisites: ['03_cards_pos_merchant_clearing'],
+    unlocks: ['05_ekyc_biometrics_aml_compliance'],
+    relatedCaseStudies: [],
+    relatedInterviewIds: ['int-4'],
+    quickCheck: {
+      question: 'Một khách hàng cá nhân bị nợ quá hạn 45 ngày tại một tổ chức tín dụng. Khách hàng này thuộc nhóm nợ nào trên hệ thống thông tin tín dụng quốc gia CIC?',
+      options: [
+        'Nhóm 1 (Nợ đủ tiêu chuẩn)',
+        'Nhóm 2 (Nợ cần chú ý: Quá hạn từ 10 đến 90 ngày)',
+        'Nhóm 3 (Nợ dưới tiêu chuẩn)',
+        'Nhóm 5 (Nợ có khả năng mất vốn)'
+      ],
+      correctIndex: 1,
+      explanation: 'Quá hạn từ 10 đến 90 ngày thuộc Nhóm 2 (Nợ cần chú ý). Hầu hết các ứng dụng ngân hàng số sẽ từ chối cấp hạn mức vay tín chấp mới tự động khi phát hiện nợ Nhóm 2.'
+    }
   },
   {
     id: '05_ekyc_biometrics_aml_compliance',
@@ -204,7 +406,22 @@ export const LESSONS: Lesson[] = [
       '4 lớp phòng thủ eKYC: OCR -> Anti-Spoofing -> Đọc Chip NFC -> Liveness & Face Match.',
       'Ngưỡng giao dịch bắt buộc Face Match theo QĐ 2345: >= 10tr/lần hoặc tổng > 20tr/ngày.',
       'Hệ thống AML: Phân biệt Báo cáo giao dịch lớn CTR (>= 400tr) và Báo cáo đáng ngờ STR.'
-    ]
+    ],
+    prerequisites: ['04_digital_lending_credit_scoring', '04_user_stories_gherkin_invest'],
+    unlocks: ['interview-mastery'],
+    relatedCaseStudies: [],
+    relatedInterviewIds: ['int-1'],
+    quickCheck: {
+      question: 'Theo Quyết định 2345/QĐ-NHNN, khi một khách hàng lần đầu tiên đăng nhập ứng dụng Mobile Banking trên một chiếc điện thoại mới (Thiết bị mới), hệ thống bắt buộc phải làm gì?',
+      options: [
+        'Chỉ cần gửi mã OTP qua tin nhắn SMS thông thường',
+        'BẮT BUỘC phải thực hiện xác thực sinh trắc học khuôn mặt (Face Matching) trùng khớp với dữ liệu CCCD gắn chip đã thu thập',
+        'Chỉ cần nhập mật khẩu tĩnh của tài khoản',
+        'Khách hàng phải ra chi nhánh ngân hàng ký giấy xác nhận'
+      ],
+      correctIndex: 1,
+      explanation: 'Quyết định 2345 bắt buộc phải Face Matching khi kích hoạt tài khoản trên thiết bị mới để ngăn chặn triệt để kẻ gian hack mật khẩu hoặc cướp SIM để chiếm đoạt tài sản từ xa.'
+    }
   }
 ]
 
